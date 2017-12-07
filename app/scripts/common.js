@@ -1,5 +1,5 @@
 var config = {
-    host:'http://activity-server.sanqimei.com',
+    host:'http://192.168.88.207:80',
     timeout:5000,
     shareLogo:'http://static.sanqimei.com/web/webapp/icon/show.png',
     shareTitle:'双重福利免费领',
@@ -17,7 +17,7 @@ var config = {
  */
 function wxShareConfig(appId, timestamp, nonceStr, signature) {
     wx.config({
-        debug: true,
+        debug: false,
         appId: appId,
         timestamp: timestamp,
         nonceStr: nonceStr,
@@ -49,7 +49,7 @@ function wxShareReady(lineLink, shareTitle, shareContent, shareLogo) {
 
         wx.hideMenuItems({
             
-                menuList: ["menuItem:share:qq"] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
+                // menuList: ['menuItem:share:qq'] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
             
             });
         
@@ -60,9 +60,11 @@ function wxShareReady(lineLink, shareTitle, shareContent, shareLogo) {
             imgUrl: shareLogo, // 分享图标
             success: function () {
                 // 用户确认分享后执行的回调函数
+                alert('已分享到朋友圈');
             },
             cancel: function () {
                 // 用户取消分享后执行的回调函数
+                alert('已取消分享到朋友圈');
             }
         });
 
@@ -76,11 +78,11 @@ function wxShareReady(lineLink, shareTitle, shareContent, shareLogo) {
             dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
             success: function () {
                 // 用户确认分享后执行的回调函数
-                alert('已分享');
+                alert('已分享到朋友');
             },
             cancel: function () {
                 // 用户取消分享后执行的回调函数
-              alert('已取消');
+              alert('已取消分享到朋友');
             }
         });
 

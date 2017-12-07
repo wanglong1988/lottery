@@ -1,77 +1,279 @@
-let infos = [{id:1, info:'恭喜15788889999抽中凤凰机器人免费课程恭喜抽中凤凰机器人免费课程'},{id:1, info:'恭喜15788889999抽中ofo小黄车'},{id:1, info:'恭喜15788889999抽中摩拜单车月卡'},
-  {id:1, info:'恭喜15788889999抽中凤凰机器人免费课程5'},{id:1, info:'恭喜15788889999抽中ofo小黄车6'},{id:1, info:'恭喜15788889999抽中摩拜单车月卡7'}]
-function setRewardList(){
-
-
-
-    let docf = document.createDocumentFragment()
-
-
-
-    for(let lii of infos){
-        var li = document.createElement('li')
-        li.textContent = lii.info
-        $(docf).append(li)
+let infos = [
+//     {
+//     id: 1,
+//     info: '恭喜15788889999抽中凤凰机器人免费课程恭喜抽中凤凰机器人免费课程'
+//   }, {
+//     id: 1,
+//     info: '恭喜15788889999抽中ofo小黄车'
+//   }, {
+//     id: 1,
+//     info: '恭喜15788889999抽中摩拜单车月卡'
+//   },
+//   {
+//     id: 1,
+//     info: '恭喜15788889999抽中凤凰机器人免费课程5'
+//   }, {
+//     id: 1,
+//     info: '恭喜15788889999抽中ofo小黄车6'
+//   }, {
+//     id: 1,
+//     info: '恭喜15788889999抽中摩拜单车月卡7'
+//   }
+],
+    initNum = 8,
+    keyMaps = {
+        '100': 360,//谢谢惠顾 多加一圈
+        '6': 90 // 醒眼spa 加90度
     }
-    $(docf).append('<li>'+infos[0].info+'</li>')
 
-    $('.info-ul').append(docf)
-}
 
-function setRewardScroll(){
-    let ulr = $('.info-ul'),
-    timer
-  var reward_index = 0;
-    document.getElementsByClassName('info-ul')[0].addEventListener('transitionend', function(){
-        if(reward_index >= infos.length){
-            reward_index = 0
-            ulr.css({
-                transition: 'none',
-                transform: 'translate3d(0,0,0)'
-            })
+// 获取当前活动信息 是否过期
+function currentLottery(){
+    let url = '/lottery/getRedisLotteryId'
+    $ajax(url, {}, function(res){
+        console.log(res)
+        if(res.status == '1'){
+            let cur = new Date
+            if(new Date(res.result.startTime)< cur < new Date(res.result.endTime)){
+                setRewardList(setRewardScroll)
+            }else{
+                $('#weikaishi').css({
+                    display: 'block'
+                })
+            }
+        }else{
+
         }
     })
-     setInterval(function () {
-        reward_index += 1
-        ulr.css({
-            transition: 'transform .8s',
-            transform: `translate3d(0,-${reward_index * 14}px,0)`
-        })
-    }, 3000)
 }
-setRewardList();
-setRewardScroll();
-function bindClick(){
-    $('.circle-but').on('click', function(){
-        $('body').append('  <div class="m-modal" ><div class="m-modal-container"><h3 class="s-header">恭喜您抽中</h3><div class="s-img"><img src="images/ofo.png"> </div><div class="s-groups"><div class="s-groups-l s-g-base"><span>手机号</span><input id="phone" type="text" placeholder="填写手机号码" /></div><div class="s-groups-r s-g-base"><span>验证码</span><input id="code" type="text" placeholder="填写验证码" /><a>验证码</a></div></div><div class="s-but"><button id="submit-get" class="but-base">立即领取</button></div><div class="m-close"></div></div></div>')
+currentLottery()
 
-        $('#submit-get').on('click', function(){
+// 获取中奖名单
+function setRewardList(cb) {
+    $ajax('/lottery/getluckyUser',{}, function(res){
+        if(res.status == '1'){
+            infos = res.result
 
-            let phone = $('#phone').val()
-            let code = $('#code').val()
-
-            if(!phone || !/^\d{11}$/.test(phone)){
-                return layer.open({
-                    content: '请输入正确手机号'
-                    ,skin: 'msg'
-                    ,time: 2 //2秒后自动关闭
-                  });
+            let docf = document.createDocumentFragment()
+            for (let lii of infos) {
+              var li = document.createElement('li')
+              li.textContent = lii.info
+              $(docf).append(li)
             }
+            infos[0] && $(docf).append('<li>' + infos[0].info + '</li>')
+          
+            $('.info-ul').append(docf)
 
-            if(!code || !/^\d+$/.test(code)){
-                 return layer.open({
-                    content: '请输入有效验证码'
-                    ,skin: 'msg'
-                    ,time: 2 //2秒后自动关闭
-                  });
-            }
+            cb()
 
-        })
-
-        $('.m-close').on('click', function(){
-            $('.m-modal').remove()
-        })
+        }else{
+            layer.open({
+                content: res.errorMsg,
+                skin: 'msg',
+                time: 2
+              });
+        }
     })
 }
 
-bindClick()
+//设置名单滚动
+function setRewardScroll() {
+  let ulr = $('.info-ul'),
+    timer,
+    reward_index = 0;
+  document.getElementsByClassName('info-ul')[0].addEventListener('transitionend', function () {
+    if (reward_index >= infos.length) {
+      reward_index = 0
+      ulr.css({
+        transition: 'none',
+        transform: 'translate3d(0,0,0)'
+      })
+    }
+  })
+  timer = setInterval(function () {
+    reward_index += 1
+    ulr.css({
+      transition: 'transform .8s',
+      transform: `translate3d(0,-${reward_index * 14}px,0)`
+    })
+  }, 3000)
+}
+
+function bindCircleScroll(cb){
+    $('.circle-but').on('click', function () {
+        circleScroll()
+      })
+}
+
+function alertError(res){
+    layer.open({
+        content: res.errorMsg,
+        skin: 'msg',
+        time: 2
+      });
+}
+
+bindCircleScroll()
+
+function timeoutBlock(id, isDelay = true){
+    if(isDelay){
+        setTimeout(function(){
+            $('#'+id).css({
+                display: 'block'
+            })
+        }, 5000)
+    }else{
+        $('#'+id).css({
+            display: 'block'
+        })
+    }
+}
+
+// 开始抽奖 转盘
+function circleScroll() {
+  let url = '/lottery/luckyGo'
+
+  let {access_token, openid} = JSON.parse(sessionStorage.getItem('accessinfo'))
+
+  $ajax(url, {openid, wxToken: access_token, lotteryId: 1}, function(res){
+    if(res.status == '1'){
+        $('#zp').css({
+            transform: `rotate(${initNum*360 + Number(keyMaps[res.result.code])}deg)`
+        })
+        if(res.result.code == '100'){
+            timeoutBlock('weichouzhong')
+        }else{
+            setTimeout(function(){
+                circleSuccess()
+            }, 5000)
+        }
+    }else{
+        if(res.errorCode == '4444'){
+            timeoutBlock('chouyici', false)
+        }else{
+            alertError(res)
+        }
+    }
+
+  })
+}
+// 抽中
+function circleSuccess() {
+  $('body').append('  <div class="m-modal" id="zhongj" ><div class="m-modal-container"><h3 class="s-header">恭喜您抽中</h3><div class="s-img"><img src="images/ofo.png"> </div><div class="s-groups"><div class="s-groups-l s-g-base"><span>手机号</span><input id="phone" type="number" placeholder="填写手机号码" /></div><div class="s-groups-r s-g-base"><span>验证码</span><input id="code" type="number" placeholder="填写验证码" /><a id="getcode">验证码</a></div></div><div class="s-but"><button id="submit-get" class="but-base">立即领取</button></div><div id="zhongjclose" class="m-close"></div></div></div>')
+
+  $('#getcode').on('click', function () {
+    if (repTel()) {
+      $ajax('/lottery/sendMessage', {
+        phone: $('#phone').val(),
+        type: 3
+      }, function (res) {
+        if (res.status === '1') {
+          $('#getcode').attr('disabled', 'true').text('30s').addClass('get')
+          count();
+          layer.open({
+            content: '验证码已发送，请注意查收',
+            skin: 'msg',
+            time: 2
+          });
+        } else {
+          layer.open({
+            content: 'asdf',
+            skin: 'msg',
+            time: 2
+          });
+        }
+      }, function (e) {
+        layer.open({
+          content: e.message,
+          skin: 'msg',
+          time: 2
+        });
+      })
+    }
+  })
+
+  $('#submit-get').on('click', function () {
+    let url = '/lottery/updatelottery'
+
+    let phone = $('#phone').val()
+    let code = $('#code').val()
+
+    if (!phone || !/^\d{11}$/.test(phone)) {
+      return layer.open({
+        content: '请输入正确手机号',
+        skin: 'msg',
+        time: 2 //2秒后自动关闭
+      });
+    }
+
+    if (!code || !/^\d+$/.test(code)) {
+      return layer.open({
+        content: '请输入有效验证码',
+        skin: 'msg',
+        time: 2 //2秒后自动关闭
+      });
+    }
+
+    $ajax(url, {
+        smsCode: code,
+        phone,
+        loteryToken: '1'
+    }, function(res){
+        console.log(res)
+        if(res.status == '1'){
+            $('#zhongj').remove()
+            $('#lingqucg').css({
+                display: 'block'
+            })
+        }else{
+            alertError(res)
+        }
+    })
+
+  })
+
+  $('#zhongjclose').on('click', function () {
+    $('#zhongj').remove()
+  })
+}
+
+
+function repTel() {
+  var rep = /^1[3|4|5|7|8][0-9]\d{8}$/;
+  var telStr = $('#phone').val();
+  if (telStr === '') {
+    layer.open({
+      content: '手机号不能为空',
+      skin: 'msg',
+      time: 2
+    });
+    return false
+  } else {
+    if (!rep.test(telStr)) {
+      layer.open({
+        content: '手机号错误',
+        skin: 'msg',
+        time: 2
+      });
+    }
+    return rep.test(telStr)
+  }
+}
+
+function addZero(num) {
+  return num < 10 ? '0' + num : num
+}
+
+function count() {
+  var str = $('#getcode').text();
+  var num = parseInt(str);
+  var Timer = setInterval(function () {
+    if (num <= 0) {
+      clearInterval(Timer);
+      $('#getcode').removeAttr('disabled').text('验证码').removeClass('get')
+      return
+    }
+    num--;
+    $('#getcode').text(addZero(num) + 's').addClass('get')
+  }, 1000)
+}

@@ -24,7 +24,22 @@ function getWxConfig(url,lineLink){
     $ajax('/free/getWeChatInfo',{url:url},function(res){
         if(res.status === '1'){
             var data = res.result
-            console.log(data)
+            
+            // if(GetQueryString('code')){
+            //   let code = GetQueryString('code')
+            //   $ajax('/oauth/getAccessToken', {code}, function(res){
+            //     if(res.errorCode){
+
+            //     }else{
+            //       sessionStorage.setItem('accessinfo', JSON.stringify(res))
+            //     }
+            //   }, function(res){
+            //     throw new Error('error main')
+            //   })
+            // }else{
+            //   window.location.href = `https://activities.sanqimei.com/get-weixin-code.html?appid=${data.appId}&redirect_uri=${encodeURIComponent('http://192.168.88.203:9000')}&scope=snsapi_userinfo&connect_redirect=1`
+            // }
+
             //初始化微信配置
             wxShareConfig(data.appId, data.timestamp, data.nonceStr, data.signature);
             //分享准备
@@ -37,49 +52,8 @@ $(function(){
     FastClick.attach(document.body);
     var url = window.location.href;
     var lineLink = url;
+
     getWxConfig(url,lineLink);
-
-    $ajax('/statistics/saveStatistics',{type:1});
-
-    $('#m-list').on('click','#group',function(){
-      $ajax('/statistics/saveStatistics',{type:2},function(){
-          console.log('success')
-        window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx5429f96d1f04975b&redirect_uri=https%3A%2F%2Fwx.m.shangjiadao.cn%2Fsjd_9458485%3Factivity%3D147873%26type%3D39%26joiner%3D9458485&response_type=code&scope=snsapi_userinfo&state=shangjiadao.cn&connect_redirect=1#wechat_redirect'
-
-        layer.close(layer.open({type: 2}))
-      },function(e){
-        layer.open({
-          content: e.message
-          ,skin: 'msg'
-          ,time: 2
-        });
-      })
-
-    });
-
-    $('#m-list').on('click','#receive',function(){
-        $ajax('/statistics/saveStatistics',{type:3});
-        $ajax('/statistics/getActivityFhNum',{type:3},function(res){
-          if(res.status === '1'){
-              window.location.href = `./sign.html?fromUrl=${url}`
-              layer.close(layer.open({type: 2}))
-          }else{
-            layer.close(layer.open({type: 2}));
-            layer.open({
-              content: res.errorMsg
-              ,skin: 'msg'
-              ,time: 2
-            });
-          }
-        },function(e){
-          layer.open({
-            content: e.message
-            ,skin: 'msg'
-            ,time: 2
-          });
-        })
-
-    });
 
     //奖品列表
     $ajax('/free/listFreeProduct',{type:1},function(res){
@@ -96,7 +70,6 @@ $(function(){
            return `<li><img src=${item.picUrl} alt=${item.title} width="100%"></li>`;
         })
 
-         console.log(str);
         $('#prizeUl').html(str)
         layer.close(layer.open({type: 2}))
       }else{

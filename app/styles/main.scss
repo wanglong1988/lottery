@@ -63,12 +63,11 @@ div.wrapper{
     background-size: 100%;
     div.circle{
         position: absolute;
-
-       img{
-         width:77.333%;
-         left: 10%;
-         position: relative;
-
+        img#zp{
+        width:77.333%;
+        left: 10%;
+        position: relative;
+        transition: transform 5s;
        }
         div.circle-but{
             background: url('../images/指标.png') no-repeat;
@@ -181,6 +180,15 @@ div.m-modal{
                     right: 12px;
                     padding-left: 18px;
                     border-left: 1px solid rgb(204, 204, 204)
+                }
+                a:visited{
+                    text-decoration: none;
+                }
+                a:hover{
+                    text-decoration: none;
+                }
+                .get{
+                    color:rgba(153,153,153,1);
                 }
                 input{
                     padding-right: 88px;
