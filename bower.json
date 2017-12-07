@@ -3,7 +3,8 @@
   "private": true,
   "dependencies": {
     "zepto": "^1.2.0",
-    "fastclick": "^1.0.6"
+    "fastclick": "^1.0.6",
+    "modernizr": "~2.8.1"
   },
   "devDependencies": {
     "chai": "^4.1.1",

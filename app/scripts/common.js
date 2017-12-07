@@ -17,7 +17,7 @@ var config = {
  */
 function wxShareConfig(appId, timestamp, nonceStr, signature) {
     wx.config({
-        debug: false,
+        debug: true,
         appId: appId,
         timestamp: timestamp,
         nonceStr: nonceStr,
@@ -27,7 +27,8 @@ function wxShareConfig(appId, timestamp, nonceStr, signature) {
             'onMenuShareTimeline',
             'onMenuShareAppMessage',
             'onMenuShareQQ',
-            'onMenuShareQZone'
+            'onMenuShareQZone',
+            'hideMenuItems'
         ]
     });
     wx.error(function (res) {
@@ -45,6 +46,13 @@ function wxShareConfig(appId, timestamp, nonceStr, signature) {
  */
 function wxShareReady(lineLink, shareTitle, shareContent, shareLogo) {
     wx.ready(function () {
+
+        wx.hideMenuItems({
+            
+                menuList: ["menuItem:share:qq"] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
+            
+            });
+        
         //获取“分享到朋友圈”
         wx.onMenuShareTimeline({
             title: shareTitle, // 分享标题
@@ -68,12 +76,11 @@ function wxShareReady(lineLink, shareTitle, shareContent, shareLogo) {
             dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
             success: function () {
                 // 用户确认分享后执行的回调函数
-                //alert('已分享');
-                //window.location.href = "https://www.baidu.com";
+                alert('已分享');
             },
             cancel: function () {
                 // 用户取消分享后执行的回调函数
-              //alert('已取消');
+              alert('已取消');
             }
         });
 
