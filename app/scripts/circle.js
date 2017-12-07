@@ -1,11 +1,12 @@
+let infos = [{id:1, info:'恭喜15788889999抽中凤凰机器人免费课程恭喜抽中凤凰机器人免费课程'},{id:1, info:'恭喜15788889999抽中ofo小黄车'},{id:1, info:'恭喜15788889999抽中摩拜单车月卡'},
+  {id:1, info:'恭喜15788889999抽中凤凰机器人免费课程5'},{id:1, info:'恭喜15788889999抽中ofo小黄车6'},{id:1, info:'恭喜15788889999抽中摩拜单车月卡7'}]
 function setRewardList(){
-    let infos = [{id:1, info:'恭喜15788889999抽中凤凰机器人免费课程'},{id:1, info:'恭喜15788889999抽中ofo小黄车'},{id:1, info:'恭喜15788889999抽中摩拜单车月卡'},
-    {id:1, info:'恭喜15788889999抽中凤凰机器人免费课程5'},{id:1, info:'恭喜15788889999抽中ofo小黄车6'},{id:1, info:'恭喜15788889999抽中摩拜单车月卡7'}],
-    timer
+
+
 
     let docf = document.createDocumentFragment()
-    
-    var reward_index = 0;
+
+
 
     for(let lii of infos){
         var li = document.createElement('li')
@@ -18,8 +19,9 @@ function setRewardList(){
 }
 
 function setRewardScroll(){
-    let ulr = $('.info-ul')
-
+    let ulr = $('.info-ul'),
+    timer
+  var reward_index = 0;
     document.getElementsByClassName('info-ul')[0].addEventListener('transitionend', function(){
         if(reward_index >= infos.length){
             reward_index = 0
@@ -29,7 +31,7 @@ function setRewardScroll(){
             })
         }
     })
-    timer = setInterval(function () {
+     setInterval(function () {
         reward_index += 1
         ulr.css({
             transition: 'transform .8s',
@@ -37,11 +39,12 @@ function setRewardScroll(){
         })
     }, 3000)
 }
-
+setRewardList();
+setRewardScroll();
 function bindClick(){
     $('.circle-but').on('click', function(){
-        $('body').append('  <div class="m-modal" ><div class="m-modal-container"><h3 class="s-header">恭喜您抽中</h3><div class="s-img"></div><div class="s-groups"><div class="s-groups-l s-g-base"><span>手机号</span><input id="phone" type="text" placeholder="填写手机号码" /></div><div class="s-groups-r s-g-base"><span>验证码</span><input id="code" type="text" placeholder="填写验证码" /><a>验证码</a></div></div><div class="s-but"><button id="submit-get" class="but-base">立即领取</button></div></div><div class="m-close"></div></div>')
-        
+        $('body').append('  <div class="m-modal" ><div class="m-modal-container"><h3 class="s-header">恭喜您抽中</h3><div class="s-img"><img src="images/ofo.png"> </div><div class="s-groups"><div class="s-groups-l s-g-base"><span>手机号</span><input id="phone" type="text" placeholder="填写手机号码" /></div><div class="s-groups-r s-g-base"><span>验证码</span><input id="code" type="text" placeholder="填写验证码" /><a>验证码</a></div></div><div class="s-but"><button id="submit-get" class="but-base">立即领取</button></div><div class="m-close"></div></div></div>')
+
         $('#submit-get').on('click', function(){
 
             let phone = $('#phone').val()
