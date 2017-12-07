@@ -206,7 +206,7 @@ div.m-modal{
         position: absolute;
         background: url(../images/关闭图标.png) no-repeat;
         background-size: 100%;
-        bottom: -20%;
+        bottom: -74px;
         left: 50%;
         margin-left: -27px;
       //  @media (min-width: 375px){
@@ -215,5 +215,21 @@ div.m-modal{
       //@media (min-width: 376px) and (min-width: 414px){
       //  bottom: 12%;
       //}
+    }
+    .hyh-bot{
+        font-size:18px;
+        font-family:PingFangSC-Regular;
+        color:rgba(239,100,65,1);
+        line-height: 26px;
+    }
+    .arrow{
+        position: relative;
+        top: 3%;
+        img{
+            position: absolute;
+            right: 5%;
+            top: 5%;
+            width: 60%
+        }
     }
 }
