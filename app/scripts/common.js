@@ -57,6 +57,24 @@ function wxShareConfig(appId, timestamp, nonceStr, signature) {
     });
 }
 
+function updateShareTimes(){
+    let url = '/share/updateShareCount',
+        openid = JSON.parse(sessionStorage.getItem('accessinfo')).openid
+    $ajax(url, {openid}, function(res){
+        if(res.status == '1'){
+
+        }else{
+            layer.open({
+                content: res.errorMsg,
+                skin: 'msg',
+                time: 2
+            });
+        }
+    }, function(){
+        alert('分享失败')
+    })
+}
+
 
 /**
  * 分享准备
@@ -81,11 +99,10 @@ function wxShareReady(lineLink, shareTitle, shareContent, shareLogo) {
             imgUrl: shareLogo, // 分享图标
             success: function () {
                 // 用户确认分享后执行的回调函数
-                alert('已分享到朋友圈1');
+                updateShareTimes()
             },
             cancel: function () {
                 // 用户取消分享后执行的回调函数
-                alert('已取消分享到朋友圈');
             }
         });
 
@@ -99,11 +116,10 @@ function wxShareReady(lineLink, shareTitle, shareContent, shareLogo) {
             dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
             success: function (res) {
                 // 用户确认分享后执行的回调函数
-                alert(sessionStorage.getItem('accessinfo'));
+                updateShareTimes()
             },
             cancel: function () {
                 // 用户取消分享后执行的回调函数
-              alert('已取消分享到朋友');
             }
         });
 
@@ -115,6 +131,7 @@ function wxShareReady(lineLink, shareTitle, shareContent, shareLogo) {
             imgUrl: shareLogo, // 分享图标
             success: function () {
                // 用户确认分享后执行的回调函数
+               updateShareTimes()
             },
             cancel: function () {
                // 用户取消分享后执行的回调函数
@@ -129,6 +146,7 @@ function wxShareReady(lineLink, shareTitle, shareContent, shareLogo) {
             imgUrl: shareLogo, // 分享图标
             success: function () {
                // 用户确认分享后执行的回调函数
+               updateShareTimes()
             },
             cancel: function () {
                // 用户取消分享后执行的回调函数
@@ -143,6 +161,7 @@ function wxShareReady(lineLink, shareTitle, shareContent, shareLogo) {
             imgUrl: shareLogo, // 分享图标
             success: function () {
                // 用户确认分享后执行的回调函数
+               updateShareTimes()
             },
             cancel: function () {
                 // 用户取消分享后执行的回调函数

@@ -1,6 +1,7 @@
 void function circ() {
 
   let infos = [],
+    isScrolling = false,
     initNum = 8,
     keyMaps = {
       '100': 360, //谢谢惠顾 多加一圈
@@ -98,7 +99,9 @@ void function circ() {
 
   function bindCircleScroll(cb) {
     $('.circle-but').on('click', function () {
-      circleScroll()
+      if(!isScrolling){
+        circleScroll()
+      }
     })
   }
 
@@ -116,6 +119,7 @@ void function circ() {
         $('#' + id).css({
           display: 'block'
         })
+        isScrolling = false
       }, 5000)
     } else {
       $('#' + id).css({
@@ -126,6 +130,7 @@ void function circ() {
 
   // 开始抽奖 转盘
   function circleScroll() {
+    isScrolling = true
     let url = '/lottery/luckyGo'
 
     if ($('#zp').css('transition') != 'none') {
@@ -140,12 +145,15 @@ void function circ() {
       openid
     } = JSON.parse(sessionStorage.getItem('accessinfo'))
 
+    let layIndex = layer.open({type: 2})
+
     $ajax(url, {
       openid,
       wxToken: access_token,
       lotteryId: 1
     }, function (res) {
       if (res.status == '1') {
+        layer.close(layIndex)
         $('#zp').css({
           transition: 'transform 5s',
           transform: `rotate(${initNum*360 + Number(keyMaps[res.result.code])}deg)`
@@ -156,9 +164,12 @@ void function circ() {
         } else {
           setTimeout(function () {
             circleSuccess(res)
+            isScrolling = false
           }, 5000)
         }
       } else {
+        isScrolling = false
+        layer.close(layIndex)
         switch(res.errorCode){
           case '4444':
             timeoutBlock('chouyici', false);
