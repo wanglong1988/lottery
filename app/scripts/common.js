@@ -1,10 +1,10 @@
 var config = {
     // host:'http://192.168.88.207:80',
-    host:'http://activity-server.sanqimei.com',
+    host:'http://activity-server.dev.sanqimei.com',
     // redirectUri: 'http://192.168.88.203:9000',
     redirectUri: 'http://activities.sanqimei.com/lottery/dist/index.html',
     timeout:5000,
-    shareLogo:'http://devstatic.sanqimei.com/images/products/7249538791512724953.jpg',
+    shareLogo:'http://static.sanqimei.com/activity/12/two_12.png',
     shareTitle:'幸运双12，福利免费领',
     shareContent:'幸运双12，福利免费领！',
 
