@@ -24,8 +24,8 @@ function getWxConfig(url,lineLink){
                     });
                 })
               }else{
-              // location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${data.appId}&redirect_uri=${encodeURIComponent(config['redirectUri'])}&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect`
-              location.href = `https://activities.sanqimei.com/get-weixin-code.html?appid=${data.appId}&redirect_uri=${encodeURIComponent(config['redirectUri'])}&scope=snsapi_userinfo&connect_redirect=1&state=1`
+              location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${data.appId}&redirect_uri=${encodeURIComponent(config['redirectUri'])}&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect`
+              // location.href = `https://activities.sanqimei.com/get-weixin-code.html?appid=${data.appId}&redirect_uri=${encodeURIComponent(config['redirectUri'])}&scope=snsapi_userinfo&connect_redirect=1&state=1`
             }
 
             //初始化微信配置
