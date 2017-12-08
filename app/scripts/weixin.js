@@ -11,7 +11,7 @@ function getWxConfig(url,lineLink){
             if(GetQueryString('code')){
               let code = GetQueryString('code')
               $ajax('/oauth/getAccessToken', {code}, function(res){
-                if(res.errCode){
+                if(res.errcode){
 
                 }else{
                   sessionStorage.setItem('accessinfo', JSON.stringify(res))
