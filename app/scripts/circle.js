@@ -22,7 +22,7 @@ void function circ() {
   // 获取当前活动信息 是否过期
   function currentLottery() {
     let url = '/lottery/getRedisLotteryId'
-    $ajax(url, {}, function (res) {
+    $ajax(url, {lotteryId: 1}, function (res) {
       console.log(res)
       if (res.status == '1') {
         // let cur = new Date();

@@ -5,8 +5,8 @@ var config = {
     redirectUri: 'http://activities.dev.sanqimei.com/lottery/dist/index.html',
     timeout:5000,
     shareLogo:'http://static.sanqimei.com/web/webapp/icon/show.png',
-    shareTitle:'双重福利免费领',
-    shareContent:'凤凰机器人联合37美放大招！双重福利免费领！',
+    shareTitle:'幸运双12，福利免费领',
+    shareContent:'双12放大招！福利免费领！',
 
 }
 
@@ -28,7 +28,6 @@ function $ajax(url, params, success, error) {
         }
     })
   }
-  FastClick.attach(document.body);
 // var fromUrl = GetQueryString('fromUrl');test
 /**yi
  * 初始化微信分享配置
@@ -82,7 +81,7 @@ function wxShareReady(lineLink, shareTitle, shareContent, shareLogo) {
             imgUrl: shareLogo, // 分享图标
             success: function () {
                 // 用户确认分享后执行的回调函数
-                alert('已分享到朋友圈');
+                alert('已分享到朋友圈1');
             },
             cancel: function () {
                 // 用户取消分享后执行的回调函数
