@@ -39,7 +39,7 @@ function circ() {
       }
     }, function () {
       layer.open({
-        content: '服务器异常',
+        content: '获取活动信息异常',
         skin: 'msg',
         time: 2
       });
@@ -229,7 +229,7 @@ function circ() {
           }
         }, function (e) {
           layer.open({
-            content: '服务器异常',
+            content: '发送验证码异常',
             skin: 'msg',
             time: 2
           });
