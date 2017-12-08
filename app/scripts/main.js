@@ -24,7 +24,7 @@ $(function(){
     FastClick.attach(document.body);
 
     //奖品列表
-    $ajax('/free/listFreeProduct',{type:1},function(res){
+    $ajax('/lottery/getLotteryByOpenId',{type:1},function(res){
       if(res.result.length >0){
         $('#prize .price-empty').hide();
         $('#prize .price-yes').show();
@@ -53,3 +53,4 @@ $(function(){
     })
 
 })
+
