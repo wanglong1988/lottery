@@ -26,7 +26,8 @@ void function circ() {
       console.log(res)
       if (res.status == '1') {
         let cur = new Date
-        alert('new date==='+new Date(res.result.startTime) < cur < new Date(res.result.endTime))
+        alert('new date===')
+        alert(new Date(res.result.startTime) < cur < new Date(res.result.endTime))
         alert(JSON.stringify(res))
         if (new Date(res.result.startTime) < cur < new Date(res.result.endTime)) {
           setRewardList(setRewardScroll)
