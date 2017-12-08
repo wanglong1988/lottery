@@ -101,7 +101,7 @@ function wxShareReady(lineLink, shareTitle, shareContent, shareLogo) {
             success: function () {
                 // 用户确认分享后执行的回调函数
                 alert('分享到朋友');
-                alert(sessionStorage.getItem('accessinfo'));
+                alert(sessionStorage.getItem('accessinfo')+'as======fd');
             },
             cancel: function () {
                 // 用户取消分享后执行的回调函数
