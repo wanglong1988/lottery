@@ -59,7 +59,7 @@ function wxShareConfig(appId, timestamp, nonceStr, signature) {
 function updateShareTimes(){
     let url = '/share/updateShareCount',
         openid = JSON.parse(sessionStorage.getItem('accessinfo')).openid;
-        alert(openid)
+        alert(sessionStorage.getItem('accessinfo'))
     $ajax(url, {openid}, function(res){
         if(res.status == '1'){
 
