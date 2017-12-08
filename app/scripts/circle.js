@@ -25,7 +25,7 @@ void function circ() {
     $ajax(url, {}, function (res) {
       console.log(res)
       if (res.status == '1') {
-        // alert(JSON.stringify(res))
+        alert(JSON.stringify(res))
         let cur = new Date
         if (new Date(res.result.startTime) < cur < new Date(res.result.endTime)) {
           setRewardList(setRewardScroll)
