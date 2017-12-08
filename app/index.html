@@ -25,79 +25,161 @@
 </head>
 
 <body>
-  <div class="wrapper">
-    <div class="reward-info">
-      <ul class="info-ul">
-        <!-- <li>
-            恭喜15788889999 抽中凤凰机器人免费课程
-        </li>
-        <li>
-            恭喜15788889999抽中ofo小黄车
-        </li>
-        <li>
-            恭喜15788889999抽中ofo小黄车1
-        </li>
-        <li>
-            恭喜15788889999抽中ofo小黄车2
-        </li> -->
-      </ul>
-    </div>
-    <div class="circle">
-      <img src="images/dzp.png">
-      <div class="circle-but"></div>
-    </div>
-
-    <div class="bottom-buts">
-      <a class="but-l but-base" href="activityrules.html">活动规则</a>
-      <a class="but-l but-base" href="myprize.html">我的奖品</a>
-      <!--<button class="but-l but-base">活动规则</button>-->
-      <!--<button class="but-r but-base">我的奖品</button>-->
-    </div>
+<div class="wrapper">
+  <div class="reward-info">
+    <ul class="info-ul">
+      <!-- <li>
+          恭喜15788889999 抽中凤凰机器人免费课程
+      </li>
+      <li>
+          恭喜15788889999抽中ofo小黄车
+      </li>
+      <li>
+          恭喜15788889999抽中ofo小黄车1
+      </li>
+      <li>
+          恭喜15788889999抽中ofo小黄车2
+      </li> -->
+    </ul>
+  </div>
+  <div class="circle">
+    <img id="zp" src="images/dzpnew.png">
+    <div class="circle-but"></div>
   </div>
 
-  <!-- <div class="m-modal" style="display:none">
-    <div class="m-modal-container">
-      <h3 class="s-header">恭喜您抽中</h3>
-      <div class="s-img">
+  <div class="bottom-buts">
+    <a class="but-l but-base" href="activityrules.html">活动规则</a>
+    <a class="but-l but-base" href="myprize.html">我的奖品</a>
+    <!--<button class="but-l but-base">活动规则</button>-->
+    <!--<button class="but-r but-base">我的奖品</button>-->
+  </div>
+</div>
+
+
+<!-- 很遗憾未开始 -->
+<div class="m-modal" id="weikaishi" style="display: none">
+  <div class="m-modal-container">
+    <h3 class="s-header">很遗憾</h3>
+    <div class="s-img">
+      <img src="images/hyh.png"> </div>
+    <div class="s-but hyh-bot">
+      <span>活动还未开始</span><br>
+      <span>或已结束</span>
+    </div>
+    <div class="m-close" onclick="(function(){$('#weikaishi').css({display: 'none'})})()"></div>
+  </div>
+</div>
+<!-- end -->
+
+
+<!-- 很遗憾未抽中 -->
+<div class="m-modal" id="weichouzhong" style="display: none">
+  <div class="arrow">
+    <img src="images/fxhd.png" alt="">
+  </div>
+  <div class="m-modal-container">
+    <h3 class="s-header">很遗憾您未抽中</h3>
+    <div class="s-img">
+      <img src="images/hyh.png"> </div>
+    <div class="s-but hyh-bot">
+      <span>每天有2次分享机会，分享</span><br>
+      <span>朋友圈可再次抽奖</span>
+    </div>
+    <div class="m-close" onclick="(function(){$('#weichouzhong').css({display: 'none'})})()"></div>
+  </div>
+</div>
+<!-- end -->
+
+<!-- 抽一次 -->
+<div class="m-modal" id="chouyici" style="display: none">
+  <div class="arrow">
+    <img src="images/fxhd.png" alt="">
+  </div>
+  <div class="m-modal-container">
+    <h3 class="s-header">今日抽奖次数用完，分享<br>朋友圈再抽一次吧</h3>
+    <div class="s-img">
+      <img src="images/hyh.png"> </div>
+    <div class="m-close" onclick="(function(){$('#chouyici').css({display: 'none'})})()"></div>
+  </div>
+</div>
+<!-- end -->
+
+<!-- 抽三次后 -->
+<div class="m-modal" id="chousanci" style="display: none">
+  <div class="m-modal-container">
+    <h3 class="s-header">今日抽奖次数用完，分享<br>朋友圈再抽一次吧</h3>
+    <div class="s-img">
+      <img src="images/hyh.png"> </div>
+    <div class="s-but hyh-bot">
+      <span>每天有2次分享机会，分享</span><br>
+      <span>朋友圈可再次抽奖</span>
+    </div>
+    <div class="m-close" onclick="(function(){$('#chousanci').css({display: 'none'})})()"></div>
+  </div>
+</div>
+<!-- end -->
+
+<!-- 中了 -->
+<!-- <div class="m-modal" id="zhongj" style="display: none">
+  <div class="m-modal-container">
+    <h3 class="s-header">恭喜您抽中</h3>
+    <div class="s-img">
+      <img src="images/ofo.png"> </div>
+    <div class="s-groups">
+      <div class="s-groups-l s-g-base">
+        <span>手机号</span>
+        <input id="phone" type="text" placeholder="填写手机号码" />
       </div>
-      <div class="s-groups">
-        <div class="s-groups-l s-g-base">
-          <span>手机号</span>
-          <input type="text" placeholder="填写手机号码" />
-        </div>
-        <div class="s-groups-r s-g-base">
-          <span>验证码</span>
-          <input type="text" placeholder="填写验证码" />
-          <a>验证码</a>
-        </div>
-      </div>
-      <div class="s-but">
-        <button class="but-base">立即领取</button>
+      <div class="s-groups-r s-g-base">
+        <span>验证码</span>
+        <input id="code" type="text" placeholder="填写验证码" />
+        <a>验证码</a>
       </div>
     </div>
-    <div class="m-close">
+    <div class="m-close" onclick="(function(){$('#zhongj').css({display: 'none'})})()"></div>
+  </div>
+</div> -->
+<!-- end -->
+
+
+<!-- 领取成功 -->
+<div class="m-modal" id="lingqucg" style="display: none">
+  <div class="arrow">
+    <img  src="images/fxhd.png" alt="">
+  </div>
+  <div class="m-modal-container">
+    <h3 class="s-header">恭喜您领取成功</h3>
+    <div class="s-img">
+      <img id="cgimg" src="images/ofo.png"> </div>
+    <div class="s-but hyh-bot">
+      <span>每天有2次分享机会，分享</span><br>
+      <span>朋友圈可再次抽奖</span>
     </div>
-  </div> -->
+    <div class="m-close" onclick="(function(){$('#lingqucg').css({display: 'none'})})()"></div>
+  </div>
+</div>
+<!-- end -->
 
-  <!--[if IE]>
-      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+<!--[if IE]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
 
-  <!-- build:js scripts/vendor.js -->
-  <!-- bower:js -->
-  <script src="/bower_components/zepto/zepto.js"></script>
-  <script src="/bower_components/fastclick/lib/fastclick.js"></script>
-  <script src="/bower_components/modernizr/modernizr.js"></script>
-  <!-- endbower -->
-  <!-- endbuild -->
-  <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
-  <!-- build:js scripts/main.js -->
+<!-- build:js scripts/vendor.js -->
+<!-- bower:js -->
+<script src="/bower_components/zepto/zepto.js"></script>
+<script src="/bower_components/fastclick/lib/fastclick.js"></script>
+<script src="/bower_components/modernizr/modernizr.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<!-- build:js scripts/main.js -->
 
-  <script src="scripts/common.js"></script>
-  <script src="scripts/layer.js"></script>
-  <script src="scripts/main.js"></script>
-  <script src="scripts/circle.js"></script>
-  <!-- endbuild -->
+<script src="scripts/common.js"></script>
+<script src="scripts/layer.js"></script>
+<script src="scripts/main.js"></script>
+<script src="scripts/weixin.js"></script>
+<script src="scripts/circle.js"></script>
+<!-- endbuild -->
 </body>
 
 </html>
