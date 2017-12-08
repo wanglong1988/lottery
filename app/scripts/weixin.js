@@ -7,9 +7,9 @@ function getWxConfig(url,lineLink){
     $ajax('/free/getWeChatInfo',{url:url},function(res){
         if(res.status === '1'){
             var data = res.result
-            
             if(GetQueryString('code')){
               let code = GetQueryString('code')
+              alert(code)
               $ajax('/oauth/getAccessToken', {code}, function(res){
                 if(res.errorCode){
 
