@@ -51,8 +51,6 @@ $(function(){
 
     lineLink = lineLink.split('?')[0]
 
-    alert(lineLink)
-
     getWxConfig(url,lineLink);
 
 })
