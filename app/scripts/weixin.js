@@ -33,6 +33,8 @@ function getWxConfig(url,lineLink){
             wxShareConfig(data.appId, data.timestamp, data.nonceStr, data.signature);
             //分享准备
             wxShareReady(lineLink, config.shareTitle, config.shareContent, config.shareLogo);
+
+            circ()
         }
     })
 }

@@ -1,4 +1,4 @@
-void function circ() {
+function circ() {
 
   let infos = [],
     isScrolling = false,
@@ -325,4 +325,4 @@ void function circ() {
     }, 1000)
   }
 
-}()
+}
