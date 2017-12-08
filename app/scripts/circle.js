@@ -4,14 +4,14 @@ function circ() {
     isScrolling = false,
     initNum = 8,
     keyMaps = {
-      '100': 225, //谢谢惠顾 多加一圈
-      '1': 90, //宝力豪健身月卡
+      '100': 135, //谢谢惠顾 多加一圈
+      '1': 270, //宝力豪健身月卡
       '2': 180, //小黄车ofo免费月卡
       '3': 360, //凤凰机器人免费课程
-      '4': 45, //美丽心情蛋糕优惠券
-      '5': 270, //面膜
-      '6': 315, // 醒眼spa 加90度
-      '7': 135 //清洁泡泡
+      '4': 315, //美丽心情蛋糕优惠券
+      '5': 90, //面膜
+      '6': 45, // 醒眼spa 加90度
+      '7': 225 //清洁泡泡
     };
 
 
@@ -220,7 +220,7 @@ function circ() {
             });
           } else {
             layer.open({
-              content: 'asdf',
+              content: res.errorMsg,
               skin: 'msg',
               time: 2
             });
@@ -261,7 +261,7 @@ function circ() {
       $ajax(url, {
         smsCode: code,
         phone,
-        loteryToken: userToken
+        lotteryToken: userToken
       }, function (res) {
         console.log(res)
         if (res.status == '1') {

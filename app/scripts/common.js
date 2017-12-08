@@ -1,6 +1,7 @@
 var config = {
     // host:'http://192.168.88.207:80',
-    host:'http://activity-server.dev.sanqimei.com',
+    // host:'http://activity-server.dev.sanqimei.com',
+    host:'http://activity-server.test.sanqimei.com',
     // redirectUri: 'http://192.168.88.203:9000',
     redirectUri: 'http://activities.sanqimei.com/lottery/dist/index.html',
     timeout:5000,
