@@ -36,11 +36,11 @@ function getWxConfig(url,lineLink){
     })
 }
 
-$(function(){
+// $(function(){
     FastClick.attach(document.body);
     var url = window.location.href;
     var lineLink = url;
 
     getWxConfig(url,lineLink);
 
-})
+// })
