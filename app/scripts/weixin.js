@@ -25,7 +25,7 @@ function getWxConfig(url,lineLink){
                   });
               })
             }else{
-              location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${data.appId}&redirect_uri=${encodeURIComponent(config['redirectUri'])}&response_type=code&scope=SCOPE&state=STATE#wechat_redirect `
+              location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${data.appId}&redirect_uri=${encodeURIComponent(config['redirectUri'])}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect `
               // window.location.href = `https://activities.sanqimei.com/get-weixin-code.html?appid=${data.appId}&redirect_uri=${encodeURIComponent(config['redirectUri'])}&scope=snsapi_userinfo&connect_redirect=1`
             }
 
