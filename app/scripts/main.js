@@ -25,20 +25,25 @@ function getWxConfig(url,lineLink){
         if(res.status === '1'){
             var data = res.result
             
-            // if(GetQueryString('code')){
-            //   let code = GetQueryString('code')
-            //   $ajax('/oauth/getAccessToken', {code}, function(res){
-            //     if(res.errorCode){
+            if(GetQueryString('code')){
+              let code = GetQueryString('code')
+              $ajax('/oauth/getAccessToken', {code}, function(res){
+                if(res.errorCode){
 
-            //     }else{
-            //       sessionStorage.setItem('accessinfo', JSON.stringify(res))
-            //     }
-            //   }, function(res){
-            //     throw new Error('error main')
-            //   })
-            // }else{
-            //   window.location.href = `https://activities.sanqimei.com/get-weixin-code.html?appid=${data.appId}&redirect_uri=${encodeURIComponent('http://192.168.88.203:9000')}&scope=snsapi_userinfo&connect_redirect=1`
-            // }
+                }else{
+                  sessionStorage.setItem('accessinfo', JSON.stringify(res))
+                }
+              }, function(res){
+                // throw new Error('error main')
+                layer.open({
+                    content: '服务器异常'
+                    ,skin: 'msg'
+                    ,time: 2
+                  });
+              })
+            }else{
+              window.location.href = `https://activities.sanqimei.com/get-weixin-code.html?appid=${data.appId}&redirect_uri=${encodeURIComponent('http://192.168.88.203:9000')}&scope=snsapi_userinfo&connect_redirect=1`
+            }
 
             //初始化微信配置
             wxShareConfig(data.appId, data.timestamp, data.nonceStr, data.signature);

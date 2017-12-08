@@ -23,7 +23,13 @@ let infos = [
     initNum = 8,
     keyMaps = {
         '100': 360,//谢谢惠顾 多加一圈
-        '6': 90 // 醒眼spa 加90度
+        '1': 135,//宝力豪健身月卡
+        '2': 45,//小黄车ofo免费月卡
+        '3': 225,//凤凰机器人免费课程
+        '4': 180,//美丽心情蛋糕优惠券
+        '5': 315,//面膜
+        '6': 270, // 醒眼spa 加90度
+        '7': 90//清洁泡泡
     }
 
 
@@ -133,18 +139,27 @@ function timeoutBlock(id, isDelay = true){
 function circleScroll() {
   let url = '/lottery/luckyGo'
 
+  if($('#zp').css('transition') != 'none'){
+    $('#zp').css({
+      transition: 'none',
+      transform: `rotate(0deg)`
+    })
+  }
+
   let {access_token, openid} = JSON.parse(sessionStorage.getItem('accessinfo'))
 
   $ajax(url, {openid, wxToken: access_token, lotteryId: 1}, function(res){
     if(res.status == '1'){
         $('#zp').css({
-            transform: `rotate(${initNum*360 + Number(keyMaps[res.result.code])}deg)`
+            transition: 'transform 5s',
+            // transform: `rotate(${initNum*360 + Number(keyMaps[res.result.code])}deg)`
+            transform: `rotate(${Number(keyMaps[res.result.code])}deg)`
         })
         if(res.result.code == '100'){
             timeoutBlock('weichouzhong')
         }else{
             setTimeout(function(){
-                circleSuccess()
+                circleSuccess(res)
             }, 5000)
         }
     }else{
@@ -158,14 +173,16 @@ function circleScroll() {
   })
 }
 // 抽中
-function circleSuccess() {
-  $('body').append('  <div class="m-modal" id="zhongj" ><div class="m-modal-container"><h3 class="s-header">恭喜您抽中</h3><div class="s-img"><img src="images/ofo.png"> </div><div class="s-groups"><div class="s-groups-l s-g-base"><span>手机号</span><input id="phone" type="number" placeholder="填写手机号码" /></div><div class="s-groups-r s-g-base"><span>验证码</span><input id="code" type="number" placeholder="填写验证码" /><a id="getcode">验证码</a></div></div><div class="s-but"><button id="submit-get" class="but-base">立即领取</button></div><div id="zhongjclose" class="m-close"></div></div></div>')
+function circleSuccess(result) {
+  let src = 'images/ofo.png'
+  result.result.picUrl && (src = result.result.picUrl)
+  $('body').append(`  <div class="m-modal" id="zhongj" ><div class="m-modal-container"><h3 class="s-header">恭喜您抽中</h3><div class="s-img"><img src=${src}> </div><div class="s-groups"><div class="s-groups-l s-g-base"><span>手机号</span><input id="phone" type="number" placeholder="填写手机号码" /></div><div class="s-groups-r s-g-base"><span>验证码</span><input id="code" type="number" placeholder="填写验证码" /><a id="getcode">验证码</a></div></div><div class="s-but"><button id="submit-get" class="but-base">立即领取</button></div><div id="zhongjclose" class="m-close"></div></div></div>`)
 
   $('#getcode').on('click', function () {
     if (repTel()) {
       $ajax('/lottery/sendMessage', {
         phone: $('#phone').val(),
-        type: 3
+        lotteryToken: result.result.userToken
       }, function (res) {
         if (res.status === '1') {
           $('#getcode').attr('disabled', 'true').text('30s').addClass('get')
@@ -184,7 +201,7 @@ function circleSuccess() {
         }
       }, function (e) {
         layer.open({
-          content: e.message,
+          content: '服务器异常',
           skin: 'msg',
           time: 2
         });
@@ -195,8 +212,9 @@ function circleSuccess() {
   $('#submit-get').on('click', function () {
     let url = '/lottery/updatelottery'
 
-    let phone = $('#phone').val()
-    let code = $('#code').val()
+    let phone = $('#phone').val(),
+        code = $('#code').val(),
+        userToken = result.result.userToken
 
     if (!phone || !/^\d{11}$/.test(phone)) {
       return layer.open({
@@ -217,11 +235,12 @@ function circleSuccess() {
     $ajax(url, {
         smsCode: code,
         phone,
-        loteryToken: '1'
+        loteryToken: userToken
     }, function(res){
         console.log(res)
         if(res.status == '1'){
             $('#zhongj').remove()
+            $('#cgimg').attr('src', src)
             $('#lingqucg').css({
                 display: 'block'
             })
