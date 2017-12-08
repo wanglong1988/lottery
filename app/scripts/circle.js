@@ -28,8 +28,9 @@ void function circ() {
         let cur = new Date
         alert('new date===')
         alert(new Date(res.result.startTime) < cur < new Date(res.result.endTime))
+        alert(new Date(res.result.startTime) < cur && cur < new Date(res.result.endTime))
         alert(JSON.stringify(res))
-        if (new Date(res.result.startTime) < cur < new Date(res.result.endTime)) {
+        if (new Date(res.result.startTime) < cur && cur < new Date(res.result.endTime)) {
           setRewardList(setRewardScroll)
         } else {
           $('#weikaishi').css({
