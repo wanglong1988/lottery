@@ -25,16 +25,9 @@ void function circ() {
     $ajax(url, {}, function (res) {
       console.log(res)
       if (res.status == '1') {
-        let cur = new Date();
-        alert('new date===')
-        alert(new Date(res.result.startTime) < cur < new Date(res.result.endTime))
-        alert(new Date(res.result.startTime) < cur && cur < new Date(res.result.endTime))
-        alert(new Date(res.result.startTime))
-        alert(cur)
-        alert(cur<new Date(res.result.endTime))
-        alert(new Date(res.result.endTime))
-        alert(JSON.stringify(res))
-        if (new Date(res.result.startTime) < cur && cur < new Date(res.result.endTime)) {
+        // let cur = new Date();
+        // new Date(res.result.startTime) < cur && cur < new Date(res.result.endTime)
+        if (res.result.useful) {
           setRewardList(setRewardScroll)
         } else {
           $('#weikaishi').css({
