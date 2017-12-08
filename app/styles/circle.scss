@@ -1,0 +1,239 @@
+html, body{
+    height: 100%;
+    width: 100%;
+}
+button.but-base{
+    width:40%;
+    height:47px;
+    border-radius: 8px ;
+    background: linear-gradient(left, #F9854C, #EE5F3F);
+    border: none;
+    font-size:18px;
+    font-family:PingFang-SC-Medium;
+    color:rgba(255,255,255,1);
+    line-height:47px;
+}
+a.but-base{
+  text-align: center;
+  width:36%;
+  height:47px;
+  border-radius: 8px ;
+  background: linear-gradient(left, #F9854C, #EE5F3F);
+  border: none;
+  font-size:18px;
+  font-family:PingFang-SC-Medium;
+  color:rgba(255,255,255,1);
+  line-height:47px;
+}
+div.wrapper{
+    overflow: hidden;
+    div.reward-info{
+        text-align: center;
+        margin-top: 40.5%;
+      margin-bottom: 6%;
+        font-size:14px;
+        font-family:PingFangSC-Regular;
+        color:rgba(255,255,255,0.9);
+        line-height:1;
+        height: 1em;
+        overflow: hidden;
+        position: relative;
+        ul.info-ul{
+            transition-duration: .8s;
+          li{
+            display: block;
+            margin: 0 auto;
+            height: 1em;
+            line-height: 1em;
+            text-align: center;
+            width: 80%;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+          }
+        }
+    }
+
+    background: url(../images/背景.png) no-repeat #271038;
+    height: 100%;
+    background-size: 100%;
+    div.circle{
+        position: absolute;
+        img#zp{
+        width:77.333%;
+        left: 10%;
+        position: relative;
+        transition: transform 5s;
+       }
+        div.circle-but{
+            background: url('../images/指标.png') no-repeat;
+            background-size: 100%;
+            position: absolute;
+            height: 85px;
+            width: 65px;
+            left: 50%;
+            top: 50%;
+            margin-left: -33px;
+            margin-top: -43px;
+        }
+    }
+    div.bottom-buts{
+        display: flex;
+        justify-content: space-around;
+        position: absolute;
+        width: 100%;
+        bottom: 25px;
+        .but-l{
+
+        }
+    }
+}
+
+div.m-modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:rgba(10,0,26,0.8);
+    .m-modal-container{
+        box-sizing: border-box;
+        padding: 4% 4% 10%;
+        width:80%;
+        background:rgba(255,255,255,1);
+        border-radius: 12px ;
+        position: absolute;
+        left: 10%;
+        top: 50%;
+        margin-top: -188px;
+        .s-header{
+            font-size:22px;
+            font-family:PingFang-SC-Medium;
+            color:#333;
+            text-align: center;
+        }
+        .s-img{
+            margin: 5% 0 5% 0;
+            border-radius: 4px;
+          img{
+            width: 100%;
+          }
+        }
+        .s-groups{
+            .s-g-base{
+                position: relative;
+                > span{
+                    position: absolute;
+                    left: 8px;
+                    line-height: 36px;
+                    font-size:14px;
+                    font-family:PingFang-SC-Regular;
+                    color:rgba(102,102,102,1);
+                }
+                input{
+                    padding: 8px;
+                    padding-left: 60px;
+                    width: 100%;
+                    box-sizing: border-box;
+                    border: 0;
+                    border-radius: 6px ;
+                    background-color:rgba(102,102,102,0.1);
+                }
+                :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+                    color: rgba(204,204,204,1);
+                    opacity:1;
+                    font-size:14px;
+                }
+
+                ::-moz-placeholder { /* Mozilla Firefox 19+ */
+                    color: rgba(204,204,204,1);
+                    opacity:1;
+                    font-size:14px;
+                }
+
+                input:-ms-input-placeholder{
+                    color: rgba(204,204,204,1);
+                    opacity:1;
+                    font-size:14px;
+                }
+
+                input::-webkit-input-placeholder{
+                    color:rgba(204,204,204,1);
+                    opacity:1;
+                    font-size:14px;
+                }
+            }
+            .s-groups-l{
+                margin-bottom: 16px;
+            }
+            .s-groups-r{
+                a{
+                    color: #F0293F;
+                    font-size:14px;
+                    font-family:PingFangSC-Regular;
+                    position: absolute;
+                    top: 8px;
+                    right: 12px;
+                    padding-left: 18px;
+                    border-left: 1px solid rgb(204, 204, 204)
+                }
+                a:visited{
+                    text-decoration: none;
+                }
+                a:hover{
+                    text-decoration: none;
+                }
+                .get{
+                    color:rgba(153,153,153,1);
+                }
+                input{
+                    padding-right: 88px;
+                }
+            }
+        }
+        .s-but{
+            text-align: center;
+            margin-top: 25px;
+            button{
+               height: 37px;
+               line-height: 37px;
+               font-size:16px;
+               border-radius: 6px;
+            }
+        }
+    }
+    .m-close{
+        width: 53px;
+        height: 53px;
+        box-sizing: border-box;
+        padding: 10px;
+        position: absolute;
+        background: url(../images/关闭图标.png) no-repeat;
+        background-size: 100%;
+        bottom: -74px;
+        left: 50%;
+        margin-left: -27px;
+      //  @media (min-width: 375px){
+      //    bottom: 9%;
+      //  }
+      //@media (min-width: 376px) and (min-width: 414px){
+      //  bottom: 12%;
+      //}
+    }
+    .hyh-bot{
+        font-size:18px;
+        font-family:PingFangSC-Regular;
+        color:rgba(239,100,65,1);
+        line-height: 26px;
+    }
+    .arrow{
+        position: relative;
+        top: 3%;
+        img{
+            position: absolute;
+            right: 5%;
+            top: 5%;
+            width: 60%
+        }
+    }
+}
