@@ -42,7 +42,7 @@ function getWxConfig(url,lineLink){
                   });
               })
             }else{
-              window.location.href = `https://activities.sanqimei.com/get-weixin-code.html?appid=${data.appId}&redirect_uri=${encodeURIComponent('http://192.168.88.203:9000')}&scope=snsapi_userinfo&connect_redirect=1`
+              window.location.href = `https://activities.sanqimei.com/get-weixin-code.html?appid=${data.appId}&redirect_uri=${encodeURIComponent(config['redirectUri'])}&scope=snsapi_userinfo&connect_redirect=1`
             }
 
             //初始化微信配置
