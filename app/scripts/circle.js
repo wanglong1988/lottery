@@ -16,10 +16,9 @@ void function circ() {
 
 
 
-  void function init(){
-    currentLottery()
-    bindCircleScroll()
-  }()
+  currentLottery()
+  bindCircleScroll()
+  
   // 获取当前活动信息 是否过期
   function currentLottery() {
     let url = '/lottery/getRedisLotteryId'

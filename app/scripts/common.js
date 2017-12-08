@@ -10,6 +10,24 @@ var config = {
 
 }
 
+function $ajax(url, params, success, error) {
+    url = config.host + url;// 拼接请求地址
+    var success = arguments[2] ? arguments[2] : function () { };// 成功执行的函数
+    var error = arguments[3] ? arguments[3] : function () { };// 失败执行的函数
+    $.ajax({
+        url: url,
+        type: 'POST',
+        dataType: 'json',
+        data: params,//参数
+        success: function (res) {
+            success(res);
+        },
+        error: function (e) {
+            error(e);
+        }
+    })
+  }
+  FastClick.attach(document.body);
 // var fromUrl = GetQueryString('fromUrl');test
 /**yi
  * 初始化微信分享配置
