@@ -21,7 +21,7 @@ function getWxConfig(url,lineLink){
                 }, function(res){
                   // throw new Error('error main')
                   layer.open({
-                      content: '服务器异常'
+                      content: '微信服务器异常'
                       ,skin: 'msg'
                       ,time: 2
                     });
