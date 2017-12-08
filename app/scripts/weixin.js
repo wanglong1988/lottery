@@ -10,10 +10,10 @@ function getWxConfig(url,lineLink){
               if(GetQueryString('state') == '1'){
                 let code = GetQueryString('code')
                 $ajax('/oauth/getAccessToken', {code}, function(res){
-                  if(res.errorCode){
+                  if(res.errcode){
 
                   }else{
-                    sessionStorage.setItem('accessinfo', JSON.stringify(res.result))
+                    sessionStorage.setItem('accessinfo', JSON.stringify(res))
                   }
                 }, function(res){
                   // throw new Error('error main')
