@@ -3,62 +3,25 @@ var str = '';
 var mapObj={};
 
 function $ajax(url, params, success, error) {
-    url = config.host + url;// 拼接请求地址
-    var success = arguments[2] ? arguments[2] : function () { };// 成功执行的函数
-    var error = arguments[3] ? arguments[3] : function () { };// 失败执行的函数
-    $.ajax({
-        url: url,
-        type: 'POST',
-        dataType: 'json',
-        data: params,//参数
-        success: function (res) {
-            success(res);
-        },
-        error: function (e) {
-            error(e);
-        }
-    })
-}
-
-function getWxConfig(url,lineLink){
-    $ajax('/free/getWeChatInfo',{url:url},function(res){
-        if(res.status === '1'){
-            var data = res.result
-            
-            if(GetQueryString('code')){
-              let code = GetQueryString('code')
-              $ajax('/oauth/getAccessToken', {code}, function(res){
-                if(res.errorCode){
-
-                }else{
-                  sessionStorage.setItem('accessinfo', JSON.stringify(res))
-                }
-              }, function(res){
-                // throw new Error('error main')
-                layer.open({
-                    content: '服务器异常'
-                    ,skin: 'msg'
-                    ,time: 2
-                  });
-              })
-            }else{
-              window.location.href = `https://activities.sanqimei.com/get-weixin-code.html?appid=${data.appId}&redirect_uri=${encodeURIComponent(config['redirectUri'])}&scope=snsapi_userinfo&connect_redirect=1`
-            }
-
-            //初始化微信配置
-            wxShareConfig(data.appId, data.timestamp, data.nonceStr, data.signature);
-            //分享准备
-            wxShareReady(lineLink, config.shareTitle, config.shareContent, config.shareLogo);
-        }
-    })
+  url = config.host + url;// 拼接请求地址
+  var success = arguments[2] ? arguments[2] : function () { };// 成功执行的函数
+  var error = arguments[3] ? arguments[3] : function () { };// 失败执行的函数
+  $.ajax({
+      url: url,
+      type: 'POST',
+      dataType: 'json',
+      data: params,//参数
+      success: function (res) {
+          success(res);
+      },
+      error: function (e) {
+          error(e);
+      }
+  })
 }
 
 $(function(){
     FastClick.attach(document.body);
-    var url = window.location.href;
-    var lineLink = url;
-
-    getWxConfig(url,lineLink);
 
     //奖品列表
     $ajax('/free/listFreeProduct',{type:1},function(res){

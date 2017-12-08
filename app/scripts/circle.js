@@ -160,11 +160,32 @@ void function circ() {
           }, 5000)
         }
       } else {
-        if (res.errorCode == '4444') {
-          timeoutBlock('chouyici', false)
-        } else {
-          alertError(res)
+        switch(res.errorCode){
+          case '4444':
+            timeoutBlock('chouyici', false);
+            break;
+          case '2222':
+            timeoutBlock('chousanci', false);
+            break;
+          case '1111':
+            timeoutBlock('weikaishi', false);
+            break;
+          case '8888':
+            timeoutBlock('weikaishi', false);
+            break;
+          case '9999':
+            timeoutBlock('weikaishi', false);
+            break;
+          default:
+            alertError(res)
         }
+        // if (res.errorCode == '4444') {
+        //   timeoutBlock('chouyici', false)
+        // } else if(res.errorCode == '2222'){
+        //   timeoutBlock('chousanci', false)
+        // } else{
+        //   alertError(res)
+        // }
       }
 
     })

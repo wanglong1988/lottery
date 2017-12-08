@@ -104,6 +104,21 @@
   </div>
   <!-- end -->
 
+    <!-- 抽三次后 -->
+    <div class="m-modal" id="chousanci" style="display: none">
+    <div class="m-modal-container">
+      <h3 class="s-header">今日抽奖次数用完，分享<br>朋友圈再抽一次吧</h3>
+      <div class="s-img">
+        <img src="images/hyh.png"> </div>
+        <div class="s-but hyh-bot">
+          <span>每天有2次分享机会，分享</span><br>
+          <span>朋友圈可再次抽奖</span>
+        </div>
+      <div class="m-close" onclick="(function(){$('#chousanci').css({display: 'none'})})()"></div>
+    </div>
+  </div>
+  <!-- end -->
+
   <!-- 中了 -->
   <!-- <div class="m-modal" id="zhongj" style="display: none">
     <div class="m-modal-container">
@@ -162,6 +177,7 @@
   <script src="scripts/common.js"></script>
   <script src="scripts/layer.js"></script>
   <script src="scripts/main.js"></script>
+  <script src="scripts/weixin.js"></script>
   <script src="scripts/circle.js"></script>
   <!-- endbuild -->
 </body>
