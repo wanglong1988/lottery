@@ -24,7 +24,7 @@ function circ() {
   function currentLottery() {
     let url = '/lottery/getRedisLotteryId'
     $ajax(url, {lotteryId: 1}, function (res) {
-      console.log(res)
+      alert(JSON.stringify(res))
       if (res.status == '1') {
         // let cur = new Date();
         // new Date(res.result.startTime) < cur && cur < new Date(res.result.endTime)
@@ -37,7 +37,8 @@ function circ() {
         }
       } else {
       }
-    }, function () {
+    }, function (res) {
+      alert(JSON.stringify(res))
       layer.open({
         content: '获取活动信息异常',
         skin: 'msg',
