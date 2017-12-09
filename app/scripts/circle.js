@@ -2,6 +2,7 @@ function circ() {
 
   let infos = [],
     isScrolling = false,
+    codeTimer, // 验证码计时器
     initNum = 8,
     keyMaps = {
       '100': 225, //谢谢惠顾 多加一圈
@@ -286,6 +287,7 @@ function circ() {
 
     $('#zhongjclose').on('click', function () {
       $('#zhongj').remove()
+      clearInterval(codeTimer)
     })
   }
 
@@ -319,9 +321,9 @@ function circ() {
   function count() {
     var str = $('#getcode').text();
     var num = parseInt(str);
-    var Timer = setInterval(function () {
+    codeTimer = setInterval(function () {
       if (num <= 0) {
-        clearInterval(Timer);
+        clearInterval(codeTimer);
         $('#getcode').removeAttr('disabled').text('验证码').removeClass('get')
         return
       }
