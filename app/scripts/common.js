@@ -95,7 +95,7 @@ function wxShareReady(lineLink, shareTitle, shareContent, shareLogo) {
             imgUrl: shareLogo, // 分享图标
             success: function (res) {
                 // 用户确认分享后执行的回调函数
-                // updateShareTimes()
+                updateShareTimes()
             },
             cancel: function (res) {
                 // 用户取消分享后执行的回调函数
