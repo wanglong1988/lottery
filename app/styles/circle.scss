@@ -105,13 +105,13 @@ div.m-modal{
     }
     .m-modal-container{
         box-sizing: border-box;
-        padding: 4% 4% 10%;
-        width:80%;
-        background:rgba(255,255,255,1);
+        // padding: 4% 4% 10%;
+        width:90%;
+        // background:rgba(255,255,255,1);
         border-radius: 12px ;
         position: absolute;
-        left: 10%;
-        top: 55%;
+        left: 5%;
+        top: 50%;
         margin-top: -188px;
         .s-header{
             font-size:22px;
@@ -218,7 +218,7 @@ div.m-modal{
         background: url(../images/关闭图标.png) no-repeat;
         background-size: 100%;
         bottom: -74px;
-        left: 50%;
+        left: 51%;
         margin-left: -27px;
        @media (max-width: 375px){
          width: 44px;
