@@ -96,6 +96,13 @@ div.m-modal{
     right: 0;
     bottom: 0;
     background:rgba(10,0,26,0.8);
+    .m-modal-container-pic{
+        img{
+            width: 92%;
+            margin: 35% auto;
+            margin-left: 4%;
+        }
+    }
     .m-modal-container{
         box-sizing: border-box;
         padding: 4% 4% 10%;

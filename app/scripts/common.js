@@ -2,8 +2,8 @@ var config = {
     // host:'http://192.168.88.207:80',
     host:'http://activity-server.test.sanqimei.com',
     // host:'http://activity-server.dev.sanqimei.com',
-    // redirectUri: 'http://192.168.88.203:9000',
-    redirectUri: 'http://activities.sanqimei.com/lottery/dist/index.html',
+    redirectUri: 'http://192.168.88.203:9000',
+    // redirectUri: 'http://activities.sanqimei.com/lottery/dist/index.html',
     timeout:5000,
     shareLogo:'http://static.sanqimei.com/activity/12/two_12.png',
     shareTitle:'幸运双12，福利免费领',
@@ -20,7 +20,6 @@ function $ajax(url, params, success, error) {
         type: 'POST',
         dataType: 'json',
         data: params,//参数
-        timeout: 2000,
         success: function (res) {
             success(res);
         },
@@ -40,7 +39,7 @@ function $ajax(url, params, success, error) {
  */
 function wxShareConfig(appId, timestamp, nonceStr, signature) {
     wx.config({
-        debug: true,
+        debug: false,
         appId: appId,
         timestamp: timestamp,
         nonceStr: nonceStr,

@@ -24,8 +24,8 @@ function getWxConfig(url,lineLink){
                     });
                 })
               }else{
-              location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${data.appId}&redirect_uri=http%3a%2f%2factivities.sanqimei.com%2flottery%2fdist%2findex.html&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect`
-              // location.href = `https://activities.sanqimei.com/get-weixin-code.html?appid=${data.appId}&redirect_uri=http%3a%2f%2factivities.sanqimei.com%2flottery%2fdist%2findex.html&scope=snsapi_userinfo&connect_redirect=1&state=1`
+              // location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${data.appId}&redirect_uri=http%3a%2f%2factivities.sanqimei.com%2flottery%2fdist%2findex.html&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect`
+              location.href = `https://activities.sanqimei.com/get-weixin-code.html?appid=${data.appId}&redirect_uri=http%3a%2f%2f192.168.88.203%3a9000&scope=snsapi_userinfo&connect_redirect=1&state=1`
             }
 
             //初始化微信配置

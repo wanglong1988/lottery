@@ -197,6 +197,12 @@ function circ() {
         // }
       }
 
+    }, function(){
+      layer.open({
+        content: '服务器异常',
+        skin: 'msg',
+        time: 2
+      });
     })
   }
   // 抽中
