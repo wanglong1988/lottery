@@ -1,7 +1,7 @@
 var config = {
     // host:'http://192.168.88.207:80',
     host:'http://activity-server.test.sanqimei.com',
-    // host:'http://activity-server.test.sanqimei.com',
+    // host:'http://activity-server.dev.sanqimei.com',
     // redirectUri: 'http://192.168.88.203:9000',
     redirectUri: 'http://activities.sanqimei.com/lottery/dist/index.html',
     timeout:5000,
@@ -20,11 +20,13 @@ function $ajax(url, params, success, error) {
         type: 'POST',
         dataType: 'json',
         data: params,//参数
+        timeout: 500,
         success: function (res) {
             success(res);
         },
-        error: function (e) {
-            error(e);
+        error: function (e, errType, error) {
+            alert(errType+'---');
+            // error(e);
         }
     })
   }
@@ -60,7 +62,7 @@ function wxShareConfig(appId, timestamp, nonceStr, signature) {
 function updateShareTimes(){
     let url = '/share/updateShareCount';
     let openid = JSON.parse(sessionStorage.getItem('accessinfo')).openid;
-        // alert(sessionStorage.getItem('accessinfo')+'-----');
+    alert(sessionStorage.getItem('accessinfo')+'-----info');
     $ajax(url, {openid}, function(res){
         if(res.status == '1'){
 
@@ -98,12 +100,14 @@ function wxShareReady(lineLink, shareTitle, shareContent, shareLogo) {
             title: shareTitle, // 分享标题
             link: lineLink, // 分享链接
             imgUrl: shareLogo, // 分享图标
-            success: function () {
+            success: function (res) {
                 // 用户确认分享后执行的回调函数
-                updateShareTimes()
+                // updateShareTimes()
+                alert(JSON.stringify(res)+'--pqcg')
             },
-            cancel: function () {
+            cancel: function (res) {
                 // 用户取消分享后执行的回调函数
+                alert(JSON.stringify(res)+'--pqsb')
             }
         });
 
