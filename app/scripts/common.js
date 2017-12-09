@@ -40,7 +40,7 @@ function $ajax(url, params, success, error) {
  */
 function wxShareConfig(appId, timestamp, nonceStr, signature) {
     wx.config({
-        debug: false,
+        debug: true,
         appId: appId,
         timestamp: timestamp,
         nonceStr: nonceStr,
