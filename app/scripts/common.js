@@ -7,7 +7,7 @@ var config = {
     timeout:5000,
     shareLogo:'http://static.sanqimei.com/activity/12/two_12.png',
     shareTitle:'幸运双12，福利免费领',
-    shareContent:'幸运双12，福利免费领！',
+    shareContent:'37美面部清洁、宝力豪健身月卡、凤凰机器人免费课程、美丽心情优惠券更多奖品等你领',
 
 }
 
@@ -90,7 +90,7 @@ function wxShareReady(lineLink, shareTitle, shareContent, shareLogo) {
         //获取“分享到朋友圈”
         wx.onMenuShareTimeline({
             title: shareTitle, // 分享标题
-            link: lineLink, // 分享链接
+            link: config.redirectUri, // 分享链接
             imgUrl: shareLogo, // 分享图标
             success: function (res) {
                 // 用户确认分享后执行的回调函数
@@ -105,7 +105,7 @@ function wxShareReady(lineLink, shareTitle, shareContent, shareLogo) {
         wx.onMenuShareAppMessage({
             title: shareTitle, // 分享标题
             desc: shareContent, // 分享描述
-            link: lineLink, // 分享链接
+            link: config.redirectUri, // 分享链接
             imgUrl: shareLogo, // 分享图标
             type: 'link', // 分享类型,music、video或link，不填默认为link
             dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
@@ -122,7 +122,7 @@ function wxShareReady(lineLink, shareTitle, shareContent, shareLogo) {
         wx.onMenuShareQQ({
             title: shareTitle, // 分享标题
             desc: shareContent, // 分享描述
-            link: lineLink, // 分享链接
+            link: config.redirectUri, // 分享链接
             imgUrl: shareLogo, // 分享图标
             success: function () {
                // 用户确认分享后执行的回调函数
@@ -137,7 +137,7 @@ function wxShareReady(lineLink, shareTitle, shareContent, shareLogo) {
         wx.onMenuShareQZone({
             title: shareTitle, // 分享标题
             desc: shareContent, // 分享描述
-            link: lineLink, // 分享链接
+            link: config.redirectUri, // 分享链接
             imgUrl: shareLogo, // 分享图标
             success: function () {
                // 用户确认分享后执行的回调函数
@@ -152,7 +152,7 @@ function wxShareReady(lineLink, shareTitle, shareContent, shareLogo) {
         wx.onMenuShareWeibo({
             title: shareTitle, // 分享标题
             desc: shareContent, // 分享描述
-            link: lineLink, // 分享链接
+            link: config.redirectUri, // 分享链接
             imgUrl: shareLogo, // 分享图标
             success: function () {
                // 用户确认分享后执行的回调函数

@@ -47,17 +47,17 @@ function circ() {
 
   // 获取中奖名单
   function setRewardList(cb) {
-    $ajax('/lottery/getluckyUser', {}, function (res) {
+    $ajax('/lottery/getluckyUser', {lotteryId: 1}, function (res) {
       if (res.status == '1') {
         infos = res.result
 
         let docf = document.createDocumentFragment()
         for (let lii of infos) {
           var li = document.createElement('li')
-          li.textContent = lii.info
+          li.textContent = lii.title
           $(docf).append(li)
         }
-        infos[0] && $(docf).append('<li>' + infos[0].info + '</li>')
+        infos[0] && $(docf).append('<li>' + infos[0].title + '</li>')
 
         $('.info-ul').append(docf)
 
