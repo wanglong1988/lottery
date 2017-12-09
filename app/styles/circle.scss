@@ -111,7 +111,7 @@ div.m-modal{
         border-radius: 12px ;
         position: absolute;
         left: 10%;
-        top: 50%;
+        top: 55%;
         margin-top: -188px;
         .s-header{
             font-size:22px;
@@ -220,9 +220,10 @@ div.m-modal{
         bottom: -74px;
         left: 50%;
         margin-left: -27px;
-      //  @media (min-width: 375px){
-      //    bottom: 9%;
-      //  }
+       @media (max-width: 375px){
+         width: 44px;
+         left: 52%;
+       }
       //@media (min-width: 376px) and (min-width: 414px){
       //  bottom: 12%;
       //}
@@ -240,7 +241,10 @@ div.m-modal{
             position: absolute;
             right: 5%;
             top: 5%;
-            width: 60%
+            width: 60%;
+            @media (max-width: 375px){
+                width: 48%;
+            }
         }
     }
 }
