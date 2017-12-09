@@ -50,8 +50,7 @@ function wxShareConfig(appId, timestamp, nonceStr, signature) {
             'onMenuShareTimeline',
             'onMenuShareAppMessage',
             'onMenuShareQQ',
-            'onMenuShareQZone',
-            'hideMenuItems'
+            'onMenuShareQZone'
         ]
     });
     wx.error(function (res) {
@@ -89,12 +88,21 @@ function updateShareTimes(){
 function wxShareReady(lineLink, shareTitle, shareContent, shareLogo) {
     wx.ready(function () {
 
-        wx.hideMenuItems({
+        wx.checkJsApi({
             
-                // menuList: ['menuItem:share:qq'] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
+                jsApiList: ['onMenuShareTimeline'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
+            
+                success: function(res) {
+            
+                    // 以键值对的形式返回，可用的api值true，不可用为false
+            
+                    // 如：{"checkResult":{"chooseImage":true},"errMsg":"checkJsApi:ok"}
+                    alert(JSON.stringify(res))
+            
+                }
             
             });
-        
+
         //获取“分享到朋友圈”
         wx.onMenuShareTimeline({
             title: shareTitle, // 分享标题
