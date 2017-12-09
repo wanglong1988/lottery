@@ -37,7 +37,6 @@ function circ() {
         }
       } 
     }, function (res) {
-      alert(JSON.stringify(res))
       layer.open({
         content: '获取活动信息异常',
         skin: 'msg',
@@ -278,6 +277,10 @@ function circ() {
           $('#lingqucg').css({
             display: 'block'
           })
+          $('#lingqucg').on('click', function () {
+            $('#lingqucg').css({display: 'none'});
+            clearInterval(codeTimer)
+          })
         } else {
           alertError(res)
         }
@@ -319,6 +322,7 @@ function circ() {
   }
 
   function count() {
+    console.log('count')
     var str = $('#getcode').text();
     var num = parseInt(str);
     codeTimer = setInterval(function () {
