@@ -20,13 +20,13 @@ function $ajax(url, params, success, error) {
         type: 'POST',
         dataType: 'json',
         data: params,//参数
-        timeout: 500,
+        timeout: 2000,
         success: function (res) {
             success(res);
         },
         error: function (e, errType, error) {
-            alert(errType+'---');
-            // error(e);
+            // alert(errType+'---');
+            error(e);
         }
     })
   }
@@ -61,7 +61,7 @@ function wxShareConfig(appId, timestamp, nonceStr, signature) {
 function updateShareTimes(){
     let url = '/share/updateShareCount';
     let openid = JSON.parse(sessionStorage.getItem('accessinfo')).openid;
-    alert(sessionStorage.getItem('accessinfo')+'-----info');
+    // alert(sessionStorage.getItem('accessinfo')+'-----info');
     $ajax(url, {openid}, function(res){
         if(res.status == '1'){
 
@@ -73,7 +73,7 @@ function updateShareTimes(){
             });
         }
     }, function(){
-        alert('分享失败')
+        // alert('分享失败')
     })
 }
 
@@ -99,7 +99,6 @@ function wxShareReady(lineLink, shareTitle, shareContent, shareLogo) {
             },
             cancel: function (res) {
                 // 用户取消分享后执行的回调函数
-                alert('pqsb')
             }
         });
 
@@ -113,12 +112,10 @@ function wxShareReady(lineLink, shareTitle, shareContent, shareLogo) {
             dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
             success: function (res) {
                 // 用户确认分享后执行的回调函数
-                // updateShareTimes()
-                alert('fengxiangpengyou')
+                updateShareTimes()
             },
             cancel: function () {
                 // 用户取消分享后执行的回调函数
-                alert('shibai')
             }
         });
 
