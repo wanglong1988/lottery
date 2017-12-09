@@ -103,11 +103,11 @@ function wxShareReady(lineLink, shareTitle, shareContent, shareLogo) {
             success: function (res) {
                 // 用户确认分享后执行的回调函数
                 // updateShareTimes()
-                alert(JSON.stringify(res)+'--pqcg')
+                alert('--pqcg')
             },
             cancel: function (res) {
                 // 用户取消分享后执行的回调函数
-                alert(JSON.stringify(res)+'--pqsb')
+                alert('--pqsb')
             }
         });
 
