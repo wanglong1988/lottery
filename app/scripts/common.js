@@ -88,21 +88,6 @@ function updateShareTimes(){
 function wxShareReady(lineLink, shareTitle, shareContent, shareLogo) {
     wx.ready(function () {
 
-        wx.checkJsApi({
-            
-                jsApiList: ['onMenuShareTimeline'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
-            
-                success: function(res) {
-            
-                    // 以键值对的形式返回，可用的api值true，不可用为false
-            
-                    // 如：{"checkResult":{"chooseImage":true},"errMsg":"checkJsApi:ok"}
-                    alert(JSON.stringify(res))
-            
-                }
-            
-            });
-
         //获取“分享到朋友圈”
         wx.onMenuShareTimeline({
             title: shareTitle, // 分享标题
@@ -111,11 +96,11 @@ function wxShareReady(lineLink, shareTitle, shareContent, shareLogo) {
             success: function (res) {
                 // 用户确认分享后执行的回调函数
                 // updateShareTimes()
-                alert('--pqcg')
+                alert('pqcg')
             },
             cancel: function (res) {
                 // 用户取消分享后执行的回调函数
-                alert('--pqsb')
+                alert('pqsb')
             }
         });
 
