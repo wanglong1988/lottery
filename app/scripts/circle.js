@@ -141,6 +141,15 @@ function circ() {
       })
     }
 
+    if(!sessionStorage.getItem('accessinfo')){
+      layer.open({
+        content: '尚未获得授权',
+        skin: 'msg',
+        time: 2
+      });
+      return false;
+    }
+
     let {
       access_token,
       openid
