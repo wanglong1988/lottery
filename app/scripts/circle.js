@@ -1,5 +1,7 @@
 function circ() {
 
+  if(GetQueryString('state') == '1'){
+
   let infos = [],
     isScrolling = false,
     codeTimer, // 验证码计时器
@@ -209,7 +211,7 @@ function circ() {
   function circleSuccess(result) {
     let src = 'images/ofo.png'
     result.result.picUrl && (src = result.result.picUrl)
-    $('body').append(`  <div class="m-modal" id="zhongj" ><div class="m-modal-container"><h3 class="s-header">恭喜您抽中</h3><div class="s-img"><img src=${src}> </div><div class="s-groups"><div class="s-groups-l s-g-base"><span>手机号</span><input id="phone" type="number" placeholder="填写手机号码" /></div><div class="s-groups-r s-g-base"><span>验证码</span><input id="code" type="number" placeholder="填写验证码" /><a id="getcode">验证码</a></div></div><div class="s-but"><button id="submit-get" class="but-base">立即领取</button></div><div id="zhongjclose" class="m-close"></div></div></div>`)
+    $('body').append(`  <div class="m-modal" id="zhongj" ><div class="m-modal-container m-modal-container-bkg"><h3 class="s-header">恭喜您抽中</h3><div class="s-img"><img src=${src}> </div><div class="s-groups"><div class="s-groups-l s-g-base"><span>手机号</span><input id="phone" type="number" placeholder="填写手机号码" /></div><div class="s-groups-r s-g-base"><span>验证码</span><input id="code" type="number" placeholder="填写验证码" /><a id="getcode">验证码</a></div></div><div class="s-but"><button id="submit-get" class="but-base">立即领取</button></div><div id="zhongjclose" class="m-close"></div></div></div>`)
 
     $('#getcode').on('click', function () {
       if (repTel()) {
@@ -335,5 +337,6 @@ function circ() {
       $('#getcode').text(addZero(num) + 's').addClass('get')
     }, 1000)
   }
+}
 
 }
