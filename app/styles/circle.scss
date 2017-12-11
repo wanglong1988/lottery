@@ -149,6 +149,7 @@ div.m-modal{
                     border: 0;
                     border-radius: 6px ;
                     background-color:rgba(102,102,102,0.1);
+                    user-select: auto;
                 }
                 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
                     color: rgba(204,204,204,1);
